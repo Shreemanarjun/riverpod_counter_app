@@ -45,6 +45,8 @@ class _AppState extends ConsumerState<App> with GlobalHelper {
       locale: locale,
       builder: (context, child) {
         if (mounted) {
+          ///Used for responsive design
+          ///Here you can define breakpoint and how the responsive should work
           child = child = ResponsiveWrapper.builder(
             BouncingScrollWrapper.builder(context, child!),
             maxWidth: 1700,
@@ -58,6 +60,8 @@ class _AppState extends ConsumerState<App> with GlobalHelper {
             ],
           );
 
+          /// Added annotate region by default to switch according to theme which
+          /// customize the system ui veray style
           child = AnnotatedRegion<SystemUiOverlayStyle>(
             value: currentTheme == ThemeMode.dark
                 ? SystemUiOverlayStyle.light.copyWith(
@@ -89,6 +93,8 @@ class _AppState extends ConsumerState<App> with GlobalHelper {
         } else {
           child = const SizedBox.shrink();
         }
+
+        ///Add toast support for flash
         return Toast(
           navigatorKey: navigatorKey,
           child: child,
