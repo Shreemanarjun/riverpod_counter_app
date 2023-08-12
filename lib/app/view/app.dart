@@ -60,6 +60,16 @@ class _AppState extends ConsumerState<App> with GlobalHelper {
             ],
           );
 
+          /// Add support for maximum text scale according to changes in
+          /// accessibilty in sytem settings
+          final mediaquery = MediaQuery.of(context);
+          child = MediaQuery(
+            data: mediaquery.copyWith(
+              textScaleFactor: mediaquery.textScaleFactor.clamp(0, 1.5),
+            ),
+            child: child,
+          );
+
           /// Added annotate region by default to switch according to theme which
           /// customize the system ui veray style
           child = AnnotatedRegion<SystemUiOverlayStyle>(
