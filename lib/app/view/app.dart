@@ -45,15 +45,19 @@ class _AppState extends ConsumerState<App> with GlobalHelper {
       locale: locale,
       builder: (context, child) {
         if (mounted) {
-          child = ResponsiveBreakpoints.builder(
-            child: BouncingScrollWrapper.builder(context, child!),
+          child = child = ResponsiveWrapper.builder(
+            BouncingScrollWrapper.builder(context, child!),
+            maxWidth: 1700,
+            minWidth: 450,
+            defaultScale: true,
             breakpoints: [
-              const Breakpoint(start: 0, end: 450, name: MOBILE),
-              const Breakpoint(start: 451, end: 800, name: TABLET),
-              const Breakpoint(start: 801, end: 1920, name: DESKTOP),
-              const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
+              const ResponsiveBreakpoint.resize(480, name: MOBILE),
+              const ResponsiveBreakpoint.autoScale(800, name: TABLET),
+              const ResponsiveBreakpoint.autoScaleDown(1200, name: DESKTOP),
+              const ResponsiveBreakpoint.autoScaleDown(1700, name: 'XL'),
             ],
           );
+
           child = AnnotatedRegion<SystemUiOverlayStyle>(
             value: currentTheme == ThemeMode.dark
                 ? SystemUiOverlayStyle.light.copyWith(
