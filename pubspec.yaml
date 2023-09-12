@@ -26,7 +26,7 @@ dependencies:
   platform_info: ^4.0.2
   # Downgraded to 0.2.0 from 1.1.0 due to
   # latest version doesnot have migartion docs
-  responsive_framework: 0.2.0
+  responsive_framework: 1.1.1
   talker_dio_logger: ^2.3.0
   talker_flutter: ^3.2.7
   velocity_x: ^4.1.1
